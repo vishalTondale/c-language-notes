@@ -1,0 +1,1601 @@
+/******************************************************************************
+
+   Author : Tondale Vishal R.
+   Subject : module 2 
+   Platform : internshala
+
+*******************************************************************************/
+
+/*   LOOPS is also known as iterators
+ type :- 1] for loop.(use when number of eterations are fixed)
+ 2] while loop. (use when number of iterations are not fixed)
+ 3] Do while loop (when numbr of iterations are not fixed but code needs to run at least once )
+ 
+ flow : start - condition - true (back to condition) - and stop when the condition get false.
+ 
+ */ 
+ /*
+ // finding odd numbers using for loop
+#include <stdio.h>
+
+int main()
+{     
+    int i,n;
+    printf("Enter the value of n : ");
+    scanf("%d",&n);
+    for (i=1; i<n; i++)    // for (cnt; condition ; increment/decrement)
+    {
+        if(i % 2 ==1)
+        printf("%d\t",i);
+    }
+    return 0;
+}
+
+ 
+// code challenge of (1*1)(2*2)(3*3).....(n*n). i.e square of n numbers
+#include<stdio.h>
+int main()
+{
+    int i,num,ans;
+    printf("Enter value of num : ");
+    scanf("%d",&num);
+    
+    for (i=1; i<=num; i++)
+    {
+        ans = i * i;
+        printf("\t %d",ans);
+    }
+    return 0;
+}
+
+*/
+
+/*WHILE LOOP 
+   while(condition) {code} work upto it is true
+
+// printing natural numbers until user input
+#include<stdio.h>
+int main ()
+{
+    int i=1,num;
+    printf("Enter number upto natural numbers get printed :");
+    scanf("%d",&num);
+    
+    while(i <= num)
+    {
+        printf("%d\t",i);
+        i++;
+    } 
+    printf("\n");
+    //finding factorial 
+    int a;  
+    long fact=1;
+    printf("enter the number :\n");
+    scanf("%d",&a);
+    while(a>0)
+    {
+        fact = fact * a;
+        a--;
+    }
+    printf("factorial of a is: %ld",fact);
+}
+
+
+//finding number of digits present in given input    (while loop in c)
+#include<stdio.h>
+int main()
+{
+    long num;
+    int ctr =0;
+    
+    printf("Enter a number : ");
+    scanf("%ld",&num);
+    
+    while(num > 0)
+    {
+        ctr++;
+        num /= 10;  //num = num/10
+        
+    }
+    printf("total numbers of digits is %d",ctr);
+}
+
+// do while loop     syntax : do{ code } while(condition)   ...it runs upto condition is true 
+
+#include<stdio.h>
+int main()
+{
+    int counter = 1;
+    
+    do
+    {
+        printf("%d\t",counter); 
+        counter++;
+    } while(counter<=10);
+    printf("\n");
+    
+    float num,sum = 0;
+    // program to find sum the numbers until user gives 0 as  input
+    do { 
+        printf("enter the  value : ");
+        scanf("%f",&num);
+        sum += num;     //sum = sum + num
+    }while(num !=  0);
+    printf("sum of entered numbers is %.2f",sum); 
+    
+    return 0;
+}
+
+// code to check weather the number is palindrome(same when it reversed) or not.
+#include<stdio.h>
+int main()
+{
+    int num,newnum,revnum = 0,reminder; 
+    printf("Enter the number : ");
+    scanf("%d",&num);
+    newnum= num;
+    do{ 
+        reminder = num % 10; 
+        revnum = (revnum * 10) + reminder;
+        num = num / 10;
+     }while(num > 0);
+
+    if(newnum == revnum)
+    printf(" given number is palindrome.");
+    else
+    printf(" given number is not palindrome.");
+}
+*/ 
+
+ /* loop control statement 
+   1] brake statement  terminate the loop... 
+   2] continue statement 
+   3] goto statement 
+   
+ 
+#include<stdio.h>
+int main()
+{
+    int i;
+    double num, sum=0;
+    for(i=0;i<=10;i++)
+    {
+        printf("Enter the number : ");
+        scanf("%lf",&num);
+        
+      if(num<0)            //when entered number is negative
+     // break;                // break statement terminate the loop.
+       goto my_lable;          // goto statement           
+      if (num > 1000){
+      printf("number greater than 1000 is not allowed "); 
+      continue;                //  continue statement
+      }                  
+        sum += num;
+    }
+    my_lable:
+    printf("sum of given numbers is :%lf",sum);
+}
+
+*/
+
+/*  arrays in c programming   
+ 1] integer array   int numbers[3] = {1,2,3];    in array it only contain same type of data;
+ 2] character array   char letters[4] = {'a','@','b','&'}; 
+ 3] float array    float[3] = {2.3,4.5,6.7};
+ 4] long array    long value[3] = {3346,8373,373274};
+ 5] double arraydouble numbers[4] = {3.46,83.73,37.327};
+ 
+ int num[3] = {10,20,30};
+index number    0, 1 ,2
+ to access aray element we need to call them by their index number 
+ ex. for printing 30 value ==   printf("%d",num[2]);
+ for printing 10 value     ==   printf("%d",num[0]);
+*/ 
+/*
+#include<stdio.h>
+int main()
+{
+    
+    // method 1 of declaring array = specifying size and initializing elements 
+    long scoresA[5] = {475,373,343,234,341};
+    
+    printf("%ld\t",scoresA[0]);
+    printf("%ld\t",scoresA[1]);
+    printf("%ld\t",scoresA[2]);
+    printf("%ld\t",scoresA[3]);
+    printf("%ld\n",scoresA[4]);
+    
+    
+    //method 2  = just initializing elements
+    long scoresB[] = {475,373,343,234,341};
+    
+    printf("accessing scoresB...\n");
+    
+    for (int i=0; i < 5; i++)
+    { 
+        printf("%ld\t",scoresB[i]); 
+    }
+    
+    
+    // method 3 = just declaring size
+    long scoresC[5]; 
+    scoresC[0] = 475;         // initializing element to the 0'th position in array 
+    scoresC[1] = 373;
+    scoresC[2] = 475;
+    scoresC[3] = 343;
+    scoresC[4] = 341;
+   return 0;
+}
+
+*/
+
+// Modifying elements in the array 
+/*
+#include<stdio.h>
+int main()
+{
+    long scoresA[5] = {123,234,345,456,567};
+    
+    scoresA[1] = 432;        //modifying the 234 by 432 
+    scoresA[4] = 765; 
+    
+    printf("original value is 234 and new value is = %ld\n",scoresA[1]);
+    printf("original value is 567 and new value is = %ld\n",scoresA[4]); 
+}
+
+
+// taking user input for the array 
+#include<stdio.h>
+int main()
+{
+    long scoreA[5];
+    for(int i=0; i<5; i++){
+    printf("ENTER THE VALUES FOR INDEX %d:",i);
+    scanf("%ld",&scoreA[i]);
+    } 
+    for(int j=0; j<5; j++)
+    {
+    printf("%ld\n",scoreA[j]);
+    }
+    return 0;
+}
+
+
+// code challenge input of 10 elements in array and finding the largest number
+#include<stdio.h>
+int main()
+{
+    long numbers[10];
+    
+    for(int i=0;i<10;i++)
+    {
+        printf("ENTER THE ARRAY INDEX NUMBER %d = ",i);
+        scanf("%ld",&numbers[i]);
+    }
+    int j;
+    long large=0;
+    for(int j=0;j<10;j++) 
+    {
+        if(large < numbers[j]) 
+        large = numbers[j];
+    }
+    printf("\nThe largest number in array is = %ld",large);
+}
+
+*/
+
+/* 2 directional array (array containing multiple arrays) it is also knows as matrix
+  syntax = int array[row][coulumn] ={ {elements of array 1},{elements of array 2},{elements of array 3}};
+  
+
+
+#include<stdio.h>
+int main()
+{
+//    int arr1[] = {3,4,5,6,7};
+//    int arr2[] = {8,9,10,11,12};
+//    int arr3[] = {13,14,15,16,17};
+  
+    int arr[][5] = { {3,4,5,6,7},                   // 2 d array representation.
+                    {8,9,10,11,12},                 // we can let row bracket empty but as we let
+                    {13,14,15,16,17},               // we must have to initialize coulumn bracket
+                  }; 
+    
+    printf("printing 1st arrays 4th index i.e 5th  value : %d\n",arr[0][4]);
+    printf("printing 2nd arrays 0th index i.e 1st  value : %d\n",arr[1][0]);  // accessing 2 d array elements
+    printf("printing 3rd arrays 1st index i.e 2nd  value : %d\n",arr[2][1]); 
+    
+    // for accesing all coulumn elements of 3 array  
+    printf("printing rows and  coulumn elements present n array :\n");
+     for (int r=0;r<3;r++)
+     {
+       for(int c=0;c<5;c++)
+       { 
+        printf(" %d\t" ,arr[r][c]); 
+       }
+       printf("\n");
+     }
+    
+    //modifying elements in array    
+    
+    arr[0][4] = 76;          //in 1st arrays 5th number 7 will become 76
+    
+    printf("\nAftar modification printing 1st arrays 4th index i.e 5th  value : %d\n",arr[0][4]);
+    
+    return 0; 
+}
+
+*/
+/* code challenge to write a program to input a 2D array of size 2 * 3, print all the elements 
+in the form of a matrixand then find out the sum of all elements entered in the 2D array 
+
+ 
+ #include<stdio.h>
+int main()
+{ 
+  int array[2][3]; 
+  int r,c,sum = 0;
+  
+  // taking input from the user
+  
+  for (r=0;r<2;r++) 
+  {
+    for (c=0;c<3;c++) 
+    {
+     printf("enter the value for %d row and %d coulumn = ",r,c);
+     scanf("%d",&array[r][c]); 
+//     sum = sum + array[r][c];             // for finding sum pf all elements in array
+    }
+    
+  }  
+  
+  // printing all values of array in the form of matrixand
+  
+  printf("\n THE ARRAY VALUES ARE\n");
+  
+  for (r=0;r<2;r++) 
+  {
+    for (c=0;c<3;c++) 
+    {
+     printf("  %d ",array[r][c]);
+    }
+    printf("\n");
+  } 
+  
+  // calculating sum of all numbers present in the array; insted of these code you just need to add line no. 346
+  
+  for (r=0;r<2;r++) 
+  {
+    for (c=0;c<3;c++) 
+    {
+     sum = sum + array[r][c];
+    }
+    
+  }
+   
+   printf("sum of all elements in array is : %d",sum);
+  return 0;
+}
+
+*/
+
+/* string in c programming (derived data type)
+  syntax  :   data type name[number of characters] ="characters"; 
+  
+  string is always terminated by a special charater \0(null character)
+ 
+
+//ways of declaring string 
+
+
+    char str1[3] = "hi";
+    
+    char str2[10] = "hi";
+    
+    char str3[] = "hi";
+    
+    char str4[] = {'h','i','\0'}:    // char array having \0 is a string
+    
+    char str5[3] = {'h','i'\0'}:
+
+    char str6[3] = {'h','i'};     //not an string its character array 
+
+
+
+#include<stdio.h>
+int main()
+{   
+    //user input for a string
+    char name[50]; 
+    puts("enter your name  : ");
+    scanf("%[^\n]%*c",name);             // %s reads the input until blank space.
+    printf("%s",name);
+}
+
+*/ 
+
+// performing operations on string 
+/*
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    //strcat(): Appends a copy of the source string to end the destination string 
+    char destination[50] =  "hello ";
+    char source[50] = "world"; 
+    strcat(destination,source);
+    printf("strcat = %s",destination);
+    
+    //strcmp(): compare two strings lexicographically 
+    char str1[10] = "hello";
+    char str2[10] = "hello"; 
+    int result = strcmp(str1,str2);  
+    if(result == 0)
+    printf("\nstrcmp : both strings are eqaul.");
+    else 
+    printf("\nstrcmp : both strings are not eqaul, ");
+    
+    //strcpy(): copy one string to another old value will replace by new value. 
+    char str3[50] = "old value";
+    char str4[50] = "new value"; 
+    strcpy(str3,str4);
+    printf("\nstrcpy = %s",str3);
+    
+    //strlen(): finding length of the string (it doesnt count null charater)
+    char name[] = "Vishal Tondale";
+    int length = strlen(name); 
+    printf("\nlength of our string is = %d",length); 
+    
+    return 0;
+}
+
+*/
+
+// code challenge to input two strings  append second at the end of first with additional space in beetween print first string.
+
+/*
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    char str1[50]; 
+    printf("enter data for string1 : ");
+    scanf("%[^\n]%*c",str1);
+    char str2[50];
+    printf("enter data for string2 : ");
+    scanf(" %[^\n]%*c",str2);
+    
+    strcat(str1," ");        // for adding blank space while appending arrays. 
+    
+    strcat(str1,str2);             //append str2 at the end of str1
+    printf("string 1 = %s",str1); 
+    
+    return 0;
+}
+
+*/
+
+// functios in c programming (built in and user defined )
+/*
+#include<stdio.h>  
+int sum(int, int);        //function declaration (prototype)
+int main()
+{  
+  printf("program starts\n");
+
+  int sum1 = sum(2,3);                  // function call
+   printf("addition of numbers is : %d\n",sum1);
+   sum1++; 
+   printf("After processing on output addition of numbers is : %d\n",sum1);
+  int sum2 = sum(12,15);             // function call. Where 12 & 15 are actual parameters or actual arguments.
+   printf("Addition of numbers is : %d\n",sum2);
+   sum2 = sum2 % 2;
+   printf("After processing on output addition of numbers is : %d\n",sum2);
+
+    return 0;
+}   
+ 
+ 
+ 
+int sum(int num1, int num2) 
+{            // function defination  num1,num2 are formal parameter or arguments
+    int addition = num1 + num2;                   
+    printf("output in function body addition of number is : %d\n",addition);    // inside {} is function body.
+    return addition;
+}
+
+
+
+#include<stdio.h> 
+void greetingUser();
+double rectangle(double, double);
+int main()
+{
+    greetingUser();
+    
+    double length,breadth;  
+    puts("Enter length of rectangle : ");
+    scanf("%lf",&length);
+    puts("Enter breadth of rectangle : ");
+    scanf("%lf",&breadth);
+    
+    rectangle(length,breadth);
+    
+    return 0;
+} 
+
+void greetingUser()
+{
+    puts("\t###################               ###################");
+    puts("\t###################    WELCOME    ###################");
+    puts("\t###################               ###################\n");
+}
+double rectangle(double l, double b) 
+{
+    double perimeter = 2* (l + b) ;
+    printf("perimeter of rectangle is : %.2lf",perimeter); 
+    return perimeter;
+}
+
+// finding average of numbers in array using user defined function.
+
+#include<stdio.h>
+double avg(double arr[], int size);
+int main()
+{
+    double numbers[5] = { 123.54, 254.544, 954698.58, 857.94, 545.5806};
+    
+     avg(numbers,5); 
+     
+     return 0;
+}
+
+double avg(double arr[], int size) 
+{    
+    int i;
+    double sum = 0,average;
+    for( i=0; i<size; i++)
+    {
+        sum = sum + arr[i];
+    } 
+    average = sum / size; 
+    printf("the average of numbers in array is %.3lf",average);
+}
+
+
+
+// code challenge write a program to find the odd numbers presents in the array using user defined function.
+
+#include<stdio.h>
+int oddNum(int*);
+int main()
+{
+    int numbers[10] = {2, 98, 99, 27, 31, 53, 88, 92, 11, 12};
+    
+    oddNum(numbers);
+    
+    return 0;
+}
+
+int oddNum(int arr[10]) 
+{
+    int i, odd; 
+    printf("odd numbers in the given array are :\t");
+    for(i = 0; i < 10; i++ )
+    {
+      if(arr[i] % 2 == 1 )
+      { 
+        odd = arr[i];  
+        printf("%d,\t",odd);
+      }
+    }
+    return odd;
+}
+
+*/ 
+ 
+ 
+/*    * > recursion  : the process where a function call itself is known as recursion. 
+      * > due to recursion the we get the result in infinite loop which causes stack (9memory assigned for function) overflow .
+      * > and stack overflow exception terminates the loop.
+      to avoid these problem use number that how many time the function get repeated.
+*/
+
+// stack overflow (infinite loop function)
+/*                     
+#include<stdio.h> 
+void greetmsg(int);
+int main()
+{
+    greetmsg(5);         
+    
+    return 0; 
+}
+
+void greetmsg(int cnt)
+{   
+    if(cnt>0)        // terminating condition for recursion.
+    {
+    puts("welcome");
+        
+    greetmsg(--cnt);      // function call inside that function.(recursion) causes infinite loop.(stack overflow) 
+    }
+}
+
+
+// finding factorial
+
+#include<stdio.h>
+long factorial(int);
+int main()
+{
+    long factResult = factorial(5);  
+    printf("factorial of 5 is : %ld\n",factResult);
+    
+    return 0;
+}
+
+long factorial(int num)
+{   
+    if(num > 0)
+    {
+     return num * factorial(--num); 
+    
+    }
+    else 
+    {
+     return 1;
+    }
+    
+}
+*/
+
+
+//  code challenge : to display the nth fibonancci number in the fibonancci series using recursion function. 
+
+/*
+
+#include<stdio.h>
+long fibonancci(int);
+int main()
+{
+    int i;
+    puts("Enter the nTH number : "); 
+    scanf("%d",&i);
+    fibonancci(i); 
+    long output = fibonancci(i);
+    printf("%ld",output);
+    
+    return 0;
+}
+
+long fibonancci(int num)
+{   
+    if(num > 1)
+    {
+     return   num = num + fibonancci(num-1);
+    } 
+    else
+    {
+     return 1;
+    }
+    
+}
+
+*/
+
+
+/*  
+   pointers in c language  
+                            special operator
+   operator                                                    description
+   
+   sizeof()                                                returns the size of memory location
+   
+   &   (addess of)                                         returns the address of a memory location
+   
+   *    (value at) (indirection operator)                       pointer to a variable
+
+
+example :
+
+       int num = 34;                                  34 value is stored in num at the  address of 100.
+       
+       int *p;                                      
+       
+       p = &num;                                      address of num(100) is stored in p at the address of 840 .
+       
+       
+       printing VALUES
+       
+       num      // value of num = 34
+       &num     // address of num = 100
+       p        // value of p = 100
+       *p       // *(&num) = value at (the address of  num) = value at (100) = 34
+       &p       // address of p = 840
+      
+      
+note : > a pointer is a veriable whose value is the address of another variable.
+       > the date type of the pointer variable should be same as the data type of the variable to which it points.
+       
+*/
+/*
+
+#include <stdio.h>
+int main()
+{
+    int num = 34;
+    int *p = &num;
+    
+    printf("address of  num = %ld\n", &num);
+    printf("value of num = %d\n", num);
+    printf("address of p  = %ld\n", &p);
+    printf("address stored at p = %ld\n", p);
+    printf("value of *p = %d\n", *p);
+    
+    return 0;
+}
+
+
+
+// sum using pointers
+
+#include<stdio.h>
+int main()
+{   
+    int x,y;
+    int *a,*b;
+    printf("Enter first number : ");
+    scanf("%d",&x);
+    printf("Enter  second number : ");
+    scanf("%d",&y); 
+    a = &x;
+    b = &y;
+    
+    int sum = *a + *b;
+    printf("sum of given numbers is = %d", sum);
+    
+    return 0;
+}
+
+
+
+// pointer increment and decrement 
+
+
+#include<stdio.h>
+int main()
+{
+    int num[4] = { 24,35,53,54};
+    int *ptr = num;                     // *ptr = &num[0]
+    
+    for(int i=0;i<4;i++)
+    {
+        printf("values at index %d = %d\n",i, *ptr);
+        ptr++;
+    }
+    
+    return 0;
+    
+}
+
+
+// accessing array data in reverse format using pointer
+
+#include<stdio.h>
+int main()
+{
+    int arr[6] = {12,32,54,56,87,98};
+    int *ptr;
+    ptr = &arr[5];
+    
+    for(int i=0; i<6;i++)
+    {
+        printf("value at index %d = %d\n",i, *ptr);
+        
+        ptr--;
+    }
+    
+    return 0;
+}
+
+
+
+// passing pointer as a parameter to a function
+// finding average of 5 numbers
+
+#include<stdio.h>
+double getaverage(float *, int);
+int main()
+{
+    float numbers[5] = {12.43,45.76,76.75,90.35,45.64};
+    float *ptr;
+    ptr = numbers;    // ptr = numbers;
+    
+    getaverage(ptr,5);
+    double avg = getaverage(ptr,5);
+    printf("avg value is = %.2lf",avg);
+    
+    return 0;
+}
+
+double getaverage(float *p, int size )
+{
+    double sum=0,average;
+   for(int i=0;i<5;i++)
+    {
+      sum = sum + *p;
+      p++; 
+    } 
+    
+    average = sum/size; 
+    return average;
+    
+}
+
+
+
+// code challenge : find the larest number in array using pointer
+
+#include<stdio.h>
+double getlarge(float *, int);
+int main()
+{
+   float numbers[5] = {983,2.9,34,433,1000.567};
+   float *ptr;
+   ptr = numbers;
+   
+   double large = getlarge(ptr,5);
+   
+   printf("largest number in array is = %.3lf",large);
+
+    return 0;
+}
+
+double getlarge(float *p, int size)
+{
+    double lar = *p;
+    
+    for(int i=0;i<size;i++)
+    {
+       if (lar < *p)
+       {
+           lar = *p;
+       }
+       p++;
+        
+    } 
+    
+    return lar;
+}
+
+
+*/
+
+/*      memory management 
+
+  1> static memory allocation.: allocation done at comple time.(before program execution) 
+     - size of static memry allocation is always fix. i.e we
+  
+  2> dynamic memory allocation.: allocation done at runtime (during program execution) 
+     - #include<stdlib.h> <- this header file used for dynamic memory allocation 
+        it consist of 4 library function
+           1> malloc()  = memory allocation.
+           2> calloc()  = contiguous allocation.
+           3> free()    = de-allocation
+           4> realloc() = re-allocation.
+           
+*/
+
+
+/*
+
+// malloc memory management.  (in malloc initially all the blocks get garbage values.)
+
+ syntax  :     syntax  :   pointer name = (data type of pointer*) malloc(number of elements * sizeof(data type of data));
+
+*/
+
+
+/*
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int *ptr,n;
+    
+    puts("Enter n : ");
+    scanf("%d",&n);
+    
+    ptr = (int*) malloc(n * sizeof(int));    //dynamic memory allocation using malloc function 
+    
+    if(ptr == NULL)                   // no value exist.
+    {
+        printf("Memory allocation failed\n");
+        exit(0);
+    }
+    else
+    {
+     for (int i=0; i<n; i++)
+     {
+        ptr[i] = i + 1;         // ptr[i] is not an array but behave like array. i.e we can access data by ptr[i].
+     }
+    
+     puts("Values present in the arrays are :");
+     for(int i=0; i<n; i++)
+     {
+     printf("%d ",ptr[i]);
+     }
+    }
+    printf("\nsize of ptr = %ld",sizeof(ptr));
+    return 0;
+}
+  
+  
+
+// code chllenge on malloc function. taking user input(float) and finding their sum 
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{ 
+   float *ptr;
+   int n;
+   
+   printf("Enter n :");
+   scanf("%d",&n);
+   
+   ptr = (float*) malloc(n * sizeof(float));
+   
+   if(ptr == NULL)
+   {
+       printf("memory allocation failed..");
+       exit(0);
+   }
+   else
+   {
+      for(int i=0; i<n;i++)
+      {
+          printf("enter value number %d :",i);
+          scanf("%f", &ptr[i]);
+      } 
+      
+        printf("numbers present in ptr are :\n");
+        
+      for(int i=0; i<n;i++)
+      {
+          printf("%.3f ",ptr[i]);
+      }
+      float sum = 0;
+      for(int i=0;i<n;i++)
+      {
+          sum = sum + ptr[i];
+      } 
+      
+      printf("\nsum of given numbers is =  %.3f ",sum);
+   }
+    
+    return 0;
+}
+
+*/
+
+
+/*
+
+// calloc memory management. (   in calloc initially all the blocks get 0 value.)
+   
+   syntax  :   pointer name = (data type of pointer*) calloc(number of elements, sizeof(data type of data));
+
+*/
+/*
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    int *ptr,n;
+    
+    puts("Enter n : ");
+    scanf("%d",&n);
+    
+    ptr = (int*) calloc(n, sizeof(int));    //dynamic memory allocation using calloc function 
+    
+    if(ptr == NULL)                   // no value exist.
+    {
+        printf("Memory allocation failed\n");
+        exit(0);
+    }
+    else
+    {
+     for (int i=0; i<n; i++)
+     {
+        ptr[i] = i + 1;         // ptr[i] is not an array but behave like array. i.e we can access data by ptr[i].
+     }
+    
+     puts("Values present in the arrays are :");
+     for(int i=0; i<n; i++)
+     {
+     printf("%d ",ptr[i]);
+     }
+    }
+    printf("\nsize of ptr = %ld",sizeof(ptr));
+    return 0;
+}
+  
+
+
+// code challenge on calloc function 
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    float *num;
+    int n; 
+    float sum=0;
+    
+    printf("Enter n :");
+    scanf("%d",&n);
+    
+    
+   num = (float*) calloc(n, sizeof(float));
+    
+    for(int i=0;i<n;i++)
+    {
+        printf("Enter value number %d : ",i);
+        scanf("%f",&num[i]);
+        sum = sum + num[i];
+    }
+    
+    printf("numbers present in *num pointer are : ");
+    
+    for(int i=0;i<n;i++)
+    {
+        printf("  %.2f",num[i]);
+    }
+    
+    printf("\n\n sum of numbers present in *num is : %.2f",sum);
+    
+    return 0;
+}
+
+*/
+
+
+
+
+
+/*
+
+// memory management using     ### free() ###     function
+
+   deallocation (freeing) of memory allocated to pointer by (calloc, malloc);  
+   
+   syntax :  free(pointer name);
+   
+*/
+
+/*
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    float *num;
+    int n; 
+    float sum=0;
+    
+    printf("Enter n :");
+    scanf("%d",&n);
+    
+    
+   num = (float*) calloc(n, sizeof(float));
+    
+    for(int i=0;i<n;i++)
+    {
+        printf("Enter value number %d : ",i);
+        scanf("%f",&num[i]);
+        sum = sum + num[i];
+    }
+    
+    printf("numbers present in *num pointer are : ");
+    
+    for(int i=0;i<n;i++)
+    {
+        printf("  %.2f",num[i]);
+    }
+    
+    printf("\n\n sum of numbers present in *num is : %.2f",sum); 
+    
+    
+    free(num);
+    
+    return 0;
+}
+
+*/
+
+/*
+
+//   realloc memory management (used to dynamically change(reallocate) the memory, which is previouslly allocated)
+    
+    syntax : data type , newSize;
+
+*/
+
+/*
+
+#include<stdio.h>
+#include<stdlib.h>
+int main()
+{
+    float *num;
+    int n; 
+    float sum=0;
+    
+    printf("Enter n :");
+    scanf("%d",&n);
+    
+    
+   num = (float*) calloc(n, sizeof(float));                          // calloc function.
+    
+    for(int i=0;i<n;i++)
+    {
+        printf("Enter value number %d : ",i);
+        scanf("%f",&num[i]);
+        sum = sum + num[i];
+    }
+    
+    printf("numbers present in *num pointer are : ");
+    
+    for(int i=0;i<n;i++)
+    {
+        printf("  %.2f",num[i]);
+    }
+    
+    printf("\n\n sum of numbers present in *num is : %.2f",sum); 
+    
+    // for reallocation of memory.
+    
+    int c, newSize; 
+    
+    printf("\n\n\nenter the count of number you want to increase : ");
+    scanf("%d",&c);
+    
+    
+    newSize = n + c;
+    
+    num = (float*) realloc(num, newSize * sizeof(float));    // realloc() function.
+    
+    for(int i=n;i<newSize;i++)
+    {
+        printf("enter value for number %d : ",i);
+        scanf("%f",&num[i]);
+        sum = sum + num[i];
+    }
+    
+    printf("\n\nafter reallocation numbers total present in *num pointer are : ");
+      
+    for(int i=0;i<newSize;i++)
+    {
+        printf("  %.2f",num[i]);
+    } 
+    
+     printf("\n\n after reallocation sum of numbers present in *num is : %.2f",sum); 
+     
+     
+     
+    free(num);
+    
+    return 0;
+    
+}
+
+
+*/
+
+/*  
+                 #######  USER DEFINED DATA TYPES ######### 
+
+
+      1> STRUCTURE  (use to store differnt types of data called as member variables of structure).
+      
+           1> in structure  total memory occupied is the sum of all members memory occupation.
+           i.e in below program memory occupied by int id = 2 byte , by char name[20] = 20 bytes 
+           and by float salary = 4 byte. so total memory occupied by struture = 2 + 20 + 4 = 26 bytes.
+           
+      2> UNION  (it is same as structure the only difference is memory occupation)
+      
+           1> in union total memory occupied is equal to the memory of largest member function. 
+           i.e in unions program larges member function who occupied largest memory is char name[20],
+           so the total memory occupied by union is 20 bytes. 
+           
+           2> in union e can accessthe member function immigiate after it assigned.
+            i.e we cannot use multi functions at a time. if we try to access multi output at a time only 
+            the last value will be valid. all other values are unvalid.
+      
+      3> enum
+      
+      
+*/
+
+
+//         ##### STRUCTURE #####  
+
+  
+
+/*
+
+
+#include<stdio.h>
+#include<string.h>              // cause we are using strcpy function.
+
+struct Employee
+{ 
+     int id;
+    char name[50]; 
+    float salary;
+    
+};
+int main()
+{
+   struct Employee e1,e2,e3;
+   
+   e1.id = 43;
+   strcpy(e1.name,"Vishal");
+   e1.salary = 50000;
+    
+    printf("employee detail :\n\nemployee name : %s \nemployee id : %d \nemployee salary : %.3f\n\n",e1.name,e1.id,e1.salary);
+
+      e2.id = 44;
+   strcpy(e2.name,"datta");
+   e2.salary = 50000;
+    
+    printf("employee detail :\n\nemployee name : %s \nemployee id : %d \nemployee salary : %.3f\n\n",e2.name,e2.id,e2.salary);
+
+      e3.id = 45;
+   strcpy(e3.name,"shubham");
+   e3.salary = 50000;
+    
+    printf("employee detail :\n\nemployee name : %s \nemployee id : %d \nemployee salary : %.3f\n\n",e3.name,e3.id,e3.salary);
+
+    
+    return 0;
+}
+
+
+*/
+
+/*
+
+// code challenge on structure 
+
+#include<stdio.h>
+#include<string.h>
+
+struct BookDetail
+{
+    char title[50];
+    char author[50];
+    float price;
+};
+int main()
+{ 
+    struct BookDetail b1, b2;
+    
+    strcpy(b1.title, "Ritch Dad Poor Dad.");
+    strcpy(b1.author, "Robert T. Kiyosaki");
+    b1.price =192;
+    
+    printf("books detail :\n\nTitle of book : %s\nAuthor of book :%s\nprice of book :RS. %.2f\n\n",b1.title,b1.author,b1.price);
+    
+    
+    strcpy(b2.title, "The Magic Of Thinking Big.");
+    strcpy(b2.author, "Devid Joseph schwartz.");
+    b2.price =189;
+    
+    printf("books detail :\n\nTitle of book : %s\nAuthor of book :%s\nprice of book :RS. %.2f\n\n",b2.title,b2.author,b2.price);
+    
+    return 0;
+}
+
+
+*/
+
+
+
+//          ############     UNION     ###############
+
+/*
+
+#include<stdio.h>
+#include<string.h>              // cause we are using strcpy function.
+
+union Employee
+{ 
+     int id;
+    char name[50]; 
+    float salary;
+    
+};
+int main()
+{
+   union Employee e1,e2,e3;
+   
+   printf("employee detail 1 :\n");
+   
+   e1.id = 43;
+   printf("\nemployee id : %d",e1.id); 
+   
+   strcpy(e1.name,"Vishal");
+   printf("\nemployee name : %s",e1.name); 
+   
+   e1.salary = 50000;
+   printf("\nemployee salary : %.3f\n\n",e1.salary);
+
+
+   printf("employee detail 2 :\n");
+   
+   
+    e2.id = 44;
+   printf("\nemployee id : %d",e2.id);   
+   
+   strcpy(e2.name,"datta");
+   printf("\nemployee name : %s",e2.name); 
+      
+   e2.salary = 50000;
+   printf("\nemployee salary : %.3f\n\n",e2.salary);
+    
+   printf("employee detail 3 :\n");
+   
+   e3.id = 45;
+   printf("\nemployee id : %d",e3.id); 
+  
+   strcpy(e3.name,"shubham");
+   printf("\nemployee name : %s",e3.name);
+   
+   e3.salary = 50000;
+   printf("\nemployee salary : %.3f\n\n",e3.salary);
+
+
+    return 0;
+}
+
+*/
+
+
+//         ##################  ENUM (Enumeration)   ##################
+
+/*
+
+#include<stdio.h>
+
+enum trafficLight
+{
+    RED, YELLO, GREEN      // should always be in capital letters. bydefault first get 0 value then1,2...
+};
+
+int main()
+{ 
+    enum trafficLight signal;
+    
+    signal = RED;
+    
+    switch(signal)
+    {
+        case RED:       
+        puts("Stop");
+        break;
+        
+        case YELLO:       
+        puts("proceed with caution");
+        break;
+        
+        case GREEN:
+        puts("Go");
+        break;
+        
+        default :
+        puts("No colour found");
+    }
+    
+    return 0;
+}
+
+
+
+
+
+// code challenge on enum program to declare numbers for the months for access purpose.  
+
+#include<stdio.h>
+
+enum month 
+{
+    JANUARY = 1, FEBRUARY, MARCH, APRIL, MAY, JUNE, JULY, AUGUST, SEPTEMBER, OTOMBER, NOVEMBER, DECEMBER,
+};
+
+int main()
+{ 
+    enum month m1;
+    
+    m1 = MAY;
+    
+    switch(m1)
+    {
+        case 1:
+        printf("\n JANUARY ");
+        break;
+        
+         case 2:
+        printf("\n FEBRUARY ");
+        break;
+        
+         case 3:
+        printf("\n MARCH ");
+        break;
+        
+         case 4:
+        printf("\n APRIL ");
+        break;
+        
+         case 5:
+        printf("\n MAY ");
+        break;
+        
+         case 6:
+        printf("\n JUNE ");
+        break;
+        
+         case 7:
+        printf("\n JULY ");
+        break;
+        
+         case 8:
+        printf("\n AUGUST ");
+        break;
+        
+         case 9:
+        printf("\n SEPTEMBER ");
+        break;
+        
+         case 10:
+        printf("\n OTOMBER ");
+        break;
+        
+         case 11:
+        printf("\n NOVEMBER ");
+        break;
+        
+         case 12:
+        printf("\n DECEMBER ");
+        break; 
+        
+        default :
+        printf("\n invalid input");
+        
+        return 0;
+    }
+    
+}
+
+
+*/
+
+/* 
+
+                           miscellaneous concepts
+
+
+     >  %p format specifire  
+       
+       - used to print the address of memory in standerd format i.e in hexadecimal format.
+       - use is similar to other data type format specifires.
+       
+       
+       
+       
+       
+     >  pass by value and pass by referance (call by value and call by referance)
+     
+        >  pass by value :
+          
+            int main()
+            {
+            
+               int x = 10;      //create a variable x with the value of 10 assume address is 100
+               changeValue(x);  //when we pass the variable x to the function anoter variable is created (num) whose value will be 10 having different address
+                                // x and num are independent variables if we modify num it wont affect on x. and vice versa known as pass by value
+            } 
+            void changeValue(int num)
+            {
+                num++;
+            }
+        
+          // 
+         // in pass by value data does not change but the address of the data get changed.
+         
+         
+         
+        >  pass by referance
+        
+             int main()
+             {
+                 int x = 10;           //create a variable x with the value of 10 assume address is 100
+                 changeValue(&x);      // when we pass adress of x to the function then a pointer variable num is created which store adress of x.
+                                       // i.e num pointer variable pointing at x variable
+             }
+             void changeValue(int *num)
+             {
+                (*num)++;               // *num represent x i.e if we modify *num we are actually modifying value of x. known as (call) pass by referance
+             }
+         
+         // 
+       
+*/
+
+
+
+
+                            // local variable and globle variable
+     
+
+/* 
+
+#include<stdio.h>
+void display();
+
+int y = 10;               // declaration of globle variable (we can access it anywhere in program)
+
+int main()
+{
+    int y = 20;            // declaration of local variable (we cannot access it out of (main) function)
+    
+    printf("local variable inside main function y : %d\n", y);
+                          // in function highest priority is given to local variables
+                          
+   display();
+    return 0; 
+}
+
+void display()
+{
+     printf("globle variable outside main function variable y : %d", y);
+}
+
+
+*/
+
+
+                      
+                      // random functions
+                      
+/*                    
+                      
+// program to roll a dice 
+
+#include<stdio.h>
+#include<stdlib.h>          // we are using srand function.
+#include<time.h>           // we are using time function.
+#include<unistd.h>         // we are using usleep function.
+
+int main()
+{ 
+    int randomNumber;
+    
+    srand(time(NULL));
+    
+    randomNumber = (rand() % 6) + 1 ;              // it gererate random numbers from 0 to 6 so to start it with 1 we are adding 1 in it. 
+    
+    puts("Rolling the dice......");
+    
+    usleep(2000000);                         // stop or sleep program for 2 seconds 
+    
+    printf("you got : %d", randomNumber);
+    
+    return 0;
+}
+
+
+*/
