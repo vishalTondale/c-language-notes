@@ -1,0 +1,567 @@
+/******************************************************************************
+
+   Author : Tondale Vishal R.
+   Subject : module 1
+   description : introduction and getting started with c language
+   Platform : internshala
+
+*******************************************************************************/
+/*  
+   data types in c programming language
+   
+  1] primary : 
+      integer type : 1> char  2> int 3> long
+      floating type : 4> float  5> double
+      
+  2] derived 
+     1> array 
+     2> pointer 
+     3> string 
+     
+  3] user defined
+     1> structure 
+     2> union 
+     3> enum
+     
+*/
+
+
+// hellow world program
+   
+/*
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+	printf("!!!Hello World!!!");
+	return 0;
+}
+ 
+// some basic programs on differnt data types.     
+ 
+#include<stdio.h>
+
+int main()
+{
+	char name[30] ="Vishal Tondale";
+	char letter = '#';
+	int  age =21;
+	printf("my name is %s. i am  %d years old and i like the symbol %c ",name,age,letter);
+	return 0;
+} 
+
+
+#include <stdio.h>
+int main()
+{
+    char country[30] = "India";
+    char doller='$';
+    float GDP = 2.2; 
+    int year =2015;
+    printf("As economic reforms up the pace,%s's GDP grew five-fold to reach US%c%.1f trillion in %d (as per IMF estimates). ",country,doller,GDP,year);
+    return 0;
+    
+}
+
+
+// pizza purchasing program
+
+
+#include<stdio.h>
+#include<unistd.h>
+int main()
+{    
+    char name[50];
+    char size;
+    int personItServes;
+    float price;
+    printf("Enter Name =");
+    scanf("%s",name);
+    printf("Enter the size of pizza as 'S' 'M' OR 'L' =");
+    scanf("%c",&size);
+    printf("Enter the number of person it serves =");
+    scanf("%d",&personItServes);
+    printf("Enter retail price =");
+    scanf("%.2f",&price);
+    
+    printf("\nGenerating massage.......\n");
+    usleep(2000000);
+    printf("Yay! You ordered a %s pizza of size %c that serves %d. please pay"
+           "Rs. %f to the delivery person",name,size,personItServes,price);
+    
+    return 0;
+    
+    
+}
+
+// relational operators
+
+
+
+#include<stdio.h>
+int main()
+{
+    int x = 2;
+    int y = 3;
+    int z = 3;
+    
+    int r1 = x>y;    //false :0   greater than
+    int r2 = x<y;     //true :1      less than
+    
+    int r3 = x >= y;   //false :0  greater than or equal to
+    int r4 = x <= y;   //true :1   less than or equal to
+    
+    int r5 = y == z;   //true :1   equal to equal to
+    int r6 = y != z;   //false :0 not equal to
+    
+    printf("r1 =%d\n",r1);
+    printf("r2 =%d\n",r2);
+    printf("r3 =%d\n",r3);
+    printf("r4 =%d\n",r4);
+    printf("r5 =%d\n",r5);
+    printf("r6 =%d\n",r6);
+    return 0;
+}
+
+// logical operators   (Associativity is left to right)
+
+
+#include<stdio.h>
+int main()
+{
+    int x=2;
+    int y=3;
+    int z=3;
+    int a = y > x;     
+    int b = z >= y; 
+    // logical and && operator
+    int r1 = a && b;     // we can directly use instructions also.
+    printf("%d\n",r1);
+    //logical or || operator
+    int r2 = a || b;
+    printf("%d\n",r2);
+    // logical not operatorint 
+    int r3 = !(x<y);
+    printf("%d\n",r3);
+    return 0;
+}
+
+// Assignment operator    (Associativity right to left)
+
+
+#include<stdio.h>
+int main()
+{
+    float Bill = 2000.0;    //  = is assignment operator
+    float tax = 100.0;
+    
+    Bill += tax;                // Bill = Bill + tax  (increment and assignment)
+    printf("Bill : %.1f \n",Bill);
+    
+    int num = 10;
+    int x = 3;
+    
+    num *= x;          // num = num* x
+    printf("num = %d \n",num); 
+    
+    return 0;
+}
+
+//  increment and decrement operator   (++pre) and (post++)
+
+
+#include<stdio.h>
+int main()
+{
+    int score = 10;
+    int newscore1 = score++;     // newscore1 = score & then score = score + 1 
+    printf("post increment newscore1 = %d\n",newscore1);
+   
+    int newscore2 = ++score;    // score = score + 1 & then  newscore2 = score
+    printf("pre increment newscore2 = %d\n",newscore2); 
+    
+    int score1 = 10;
+    int newscore3 = score1--;     // newscore3 = score & then score = score - 1 
+    printf("post decrement newscore3 = %d\n",newscore3);
+   
+    int newscore4 = --score1;    // score = score - 1 & then  newscore4 = score
+    printf("pre decrement newscore4 = %d\n",newscore4); 
+    
+    return 0;
+}
+
+// special operators    sizeof() (& returns address so address of ) * pointer o variable
+// if else statement ( unary,Binary,Ternary operators...)
+
+
+#include<stdio.h>
+int main()
+{
+    float price;
+    puts("enter retail price = ");
+    scanf("%f",&price);
+    
+    float payableAmount;
+    if (price>=500)
+    {
+        puts("eligible for discount\n");
+        payableAmount = price * .9 ;
+    }
+    else
+    { 
+        puts("not eligible for discount\n");
+        payableAmount = price;
+    } 
+    printf("discount available = %.1f\n",price - payableAmount);
+    printf("payableAmount = %.1f \n",payableAmount);
+    
+    // ternary operator     condition? exp1 : exp2
+    
+    payableAmount = price >= 500? price * .9 : price;
+    
+    printf("discount available = %.1f\n",price - payableAmount);
+    printf("payableAmount = %.1f \n",payableAmount); 
+    
+    //unary operator = ++a,--a,+a,-a
+    //Binary operator = a+b, a-b, a*b,a/b....
+    
+    return 0;
+    
+}
+
+
+// else if ladder statement    example of discount on purchase 
+
+
+#include<stdio.h>
+int main()
+{ 
+    float price;
+    puts("enter retail price = ");
+    scanf("%f",&price);
+    
+    float payableAmount; 
+    if (price >= 100 && price < 500) {
+        payableAmount = price * .95;
+    } else if (price >= 500 && price < 750){
+        payableAmount = price * .9;
+    } else if (price >= 750 && price < 1000){
+         payableAmount = price * .85;
+    } else if (price >= 1000){
+        payableAmount = price * .8;
+    }else // price < 100 
+    payableAmount = price;
+        
+    printf("discount available = %.1f\n",price - payableAmount);
+    printf("payableAmount = %.1f \n",payableAmount);
+    
+    return 0;
+}
+
+  
+//  student grades program using  else if 
+
+
+#include<stdio.h>
+int main()
+{
+    int marks;
+    printf("Enter your marks obtained outof 500 = ");
+    scanf("%d",&marks);
+if(marks > 500) printf("please enter valid marks.\n");   
+else if(marks >= 450) printf(" PASS with A grade\n");
+else if (marks >= 400) printf("PASS with B grade\n");
+else if(marks >= 350) printf("PASS with C grade\n");
+else if(marks >= 250) printf("PASS with D grade\n");
+else if (marks >= 150) printf("PASS with E grade\n");
+else if(marks < 150) printf("FAIL with F grade\n");
+ 
+    return 0;
+} 
+
+
+// switch break and default statements it only use int and char data type.
+
+
+#include<stdio.h>
+int main ()
+{
+  int rating;
+  printf("How likely you would like to rate our pizza on a scale of five?.\n");
+  printf("Reply with a number from 0 to 5, where 0 is least likely and 5 is most likey.\n");
+  printf("Enter your rating = ");
+  scanf ("%d", &rating);
+
+  switch (rating)
+    {
+    case 0:
+      printf("You had very poor experiance. we will call you shortly to know what went wrong.\n");
+      break;
+    case 1:
+      printf("You had poor experiance. we will call you shortly to know what went wrong.\n");
+      break;  
+    case 2:
+      printf("Thank you for your feedback. we will call you shortly to know what went wrong.\n");
+      break;
+    case 3:
+      printf("Thank you for your feedback. we're constantly working to improve pizza quality.\n");
+      break;
+    case 4:
+      printf(" Yay ! Thank you for your feedback.we would love to serve you again.\n);
+      break;
+    case 5:
+      printf(" Yay ! Thank you for your feedback. we would love to serve you again.\n ");
+    break; 
+    default:
+    printf("Invalid input\n")
+        
+     }
+    return 0;
+}
+*/
+
+// program algorithm steps exp sum of two njmbers                              flowchart 
+
+/* 
+    step 1 : declare variables (integers) num1,num2,sum                           
+    step 2 : get input num1                                                      start          Ovel in shape(terminator)
+    step 3 : get input num2                                                   input num1        Paralellogram in shape(i/p o/p)
+    step 4 : compute sum = num1 + num2                                        input num2        Paralellogram in shape
+    step 5 : output sum                                                    sum = num1 + num2    Rectangular in shape (processing)
+                                                                              output sum        Paralellogram in shape
+                                                                                 stop           ovel in shape
+                                                                                               Dimond (decision) condition
+                                                                                               {circle (on page connector) to
+                                                                                               join different flowline} 
+                                                                                               Arrow (flow line)
+*/                                                                                          
+ /* 
+ 
+ Que : why char is categrise in integer data type.
+ ANS: all the characters are basically a integers. i.e for every character their is a specific INTEGER value i.e ASCII value.
+   FOR SMALL ALPFABATES = 97 to 122
+   FOR CAPITAL ALFABATES = 65 to 90
+   NUMBERS = 48 to 57 
+   
+*/
+/*  
+
+
+// escape sequencec(character)
+
+
+#include<stdio.h>
+int main()
+{
+    puts("statement 1.\nstatement 2.");   //new line 
+    puts("statement 1.\tstatement 2.\n");   //horizntal tab
+    char a = '\';                        // single quote escape sequence
+    printf("%c\n",a);
+    puts("\"statement 1. and statement 2.\"");  //double quote escape sequence
+    
+}
+*/
+
+
+/* 
+type conversion (one data type to another) implecite and explicite type.
+implicite conversion : converting smaller data type into larger data type 
+explicite conversion : converting larger data type into smaller data type by using some tequenic.
+*/ 
+
+
+/*
+#include <stdio.h>
+int main()
+{   // implicit (Automatic) conversion
+    int radius = 300;
+    double newRadius = radius;
+    printf("%lf\n",newRadius);
+    
+    char ch = 'z';
+     int newCh = (char) ch;
+     printf("%d\n",newCh);
+    
+    // explicit conversion  it will lose some data.
+    double diameter = 4.67;
+    int newDiameter = (int) diameter;
+    printf("%d\n",newDiameter);
+     
+ }
+
+*/
+
+
+ /*
+// BUFFER = a temprory storage area ( memory) where the input and output data is store.
+
+
+#include <stdio.h>
+int main()
+{ 
+    char name[50],gender;
+    int id;
+    printf("enter name ");
+    scanf("%[^\n]%*c",&name);
+    
+    printf("\nenter id");
+    scanf("%d",&id);
+  
+    while ((getchar()) !='\n');     //buffer memory clear 
+    
+    printf("\nenter gender 'M' OR 'F' ");
+    scanf("%c",&gender);
+   
+    printf("%s",name);
+    printf("%d",id);
+    printf("%c",gender);
+    return 0;
+}
+*/ 
+
+
+/*
+// naming conersion  
+1] camel case :-  myAge, maxRetailPrice, firstName....
+2] snake case :-  my_age, max_retail_price, first_name.....
+3] kebab case :-  all words are in lower case and where words join together by highphens 
+                 my-age, learn-for-loop,name-the-file...... 
+                 
+*/ 
+
+
+
+
+
+
+
+/*     #######                                                    ########
+                  ASSIGNMENT ON FIRST PART OF C PROGRAMMING   
+       ######                                                     ########
+*/
+
+
+/*  
+   Name     : Tondale Vishal
+   subject  : Learning c 
+   platform : Intershala 
+*/
+
+// generate the report card of student 
+
+/*
+
+#include <stdio.h>
+
+
+int main()
+{
+    char name[50];
+    char section;
+    int standerd,Mathematics,English,Hindi,Science,SocialScience,marks;
+    
+    printf("Enter your name =");
+    scanf("%[^\n]%*c",name);
+    
+    while((getchar()) !='\n');
+    
+    printf("Enter your section =");
+    scanf("%c",&section);
+    
+    printf("Enter your standerd =");
+    scanf("%d",&standerd);
+    
+    printf("Enter Mathematics marks =");
+    scanf("%d",&Mathematics);
+    
+    printf("Enter English marks =");
+    scanf("%d",&English);
+    
+    printf("Enter Hindi marks =");
+    scanf("%d",&Hindi); 
+    
+    printf("Enter Science marks =");
+    scanf("%d",&Science); 
+    
+    printf("Enter SocialScience marks =");
+    scanf("%d\n\n\n",&SocialScience);  
+    
+    printf("Name: %s\n",name);
+    printf("Standerd: %d\n",standerd);
+    printf("Section: %c\n",section);
+    printf("\nMarks secured out of 100\n");
+    printf("Mathematics: %d\n\",Mathematics);
+    printf("English: %d\n\n",English);
+    printf("Hindi: %d\n\n",Hindi);
+    printf("Science: %d\n\n",Science);
+    printf("Social Science: %d\n\n\n",SocialScience);
+    
+    marks = Mathematics + English + Hindi + Science + SocialScience; 
+    printf("Total marks secured: %d\n",marks);
+    
+    if(marks > 449)
+     printf("Grade: A\n");
+     
+    else if(marks > 399)
+     printf("Grade: B\n");
+     
+    else if(marks > 349)
+     printf("Grade: C\n");
+     
+    else if(marks > 299)
+     printf("Grade: D\n");
+     
+    else if(marks > 199)
+     printf("Grade: E\n"); 
+     
+    else if(marks > 0)
+     printf("Grade: F\n");
+     
+    else
+    printf("Enter valid marks \n");
+
+    return 0;
+}
+
+*/
+
+
+
+// c revision
+
+
+
+// string
+/*
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int i,j;
+    char a[10];
+    char reva[10];
+    char b[10];
+
+    printf("enter the string : ");
+    scanf("%s",a);
+    strcpy(b,a);
+    int l=strlen(a);
+    for(i=l,j=0;i<0;i--,j++)
+    {
+        reva[j]=a[i];
+    }
+    printf("%s\n",reva);
+
+    if(strcmp(a,reva))
+     printf("palindrom.");
+    else
+     printf("not palindrom.");
+     
+    
+    return 0; 
+    
+}
+
+
+
+*/
